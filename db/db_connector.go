@@ -32,10 +32,10 @@ func (conn DbConnection) getConnection() (*Conn, error) {
 func (conn DbConnection) GetById(id int) (*dto.User, error) {
 	ctx := context.Background()
 	con, err := conn.getConnection()
-	usr := dto.User{}
 	if err != nil {
 		return nil, err
 	}
+	usr := dto.User{}
 	defer con.Release()
 	err = con.QueryRow(ctx, GET_USER, id).Scan(
 		&usr.Id,
